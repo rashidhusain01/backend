@@ -24,3 +24,15 @@ router.get("/all", async (req, res) => {
 });
 
 module.exports = router;
+
+
+
+router.get("/admin/messages", async (req, res) => {
+  try {
+    const messages = await ContactMessage.find().sort({ createdAt: -1 });
+    res.json(messages);
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching messages" });
+  }
+});
+
